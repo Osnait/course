@@ -3,20 +3,19 @@
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : TestBase
+    public class GroupRemovalTests : TestBase
     {
 
         [Test]
-        public void GroupCreationTest()
+        public void TheGroupRemovalTestsTest()
         {
             navigationHelper.OpenHomePage();
             loginHelper.Login(new AccountData("admin", "secret"));
             navigationHelper.GoToGroupsPage();
-            groupHelper.InitNewGroupCreation();
-            groupHelper.FillGroupForm(new GroupData("Test1", "Test2", "Test3"));
-            groupHelper.SubmitGroupCreation();
+            groupHelper.SelectGroup(1);
+            groupHelper.RemoveGroup();
             groupHelper.ReturnToGroupsPage();
         }
     }
 }
-
+// может удалить ничего, но всё равно будет passed, лол
