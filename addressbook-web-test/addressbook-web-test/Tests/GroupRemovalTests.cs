@@ -9,12 +9,11 @@ namespace WebAddressbookTests
         [Test]
         public void TheGroupRemovalTestsTest()
         {
-            appManager.Navigator.OpenHomePage();
-            appManager.Auth.Login(new AccountData("admin", "secret"));
             appManager.Navigator.GoToGroupsPage();
-            appManager.Groups.SelectGroup(1);
-            appManager.Groups.RemoveGroup();
-            appManager.Groups.ReturnToGroupsPage();
+            appManager.Groups
+                .SelectGroup(1)
+                .RemoveGroup()
+                .ReturnToGroupsPage();
         }
     }
 }
