@@ -17,7 +17,8 @@ namespace WebAddressbookTests
             manager.Navigator.GoToGroupsPage();
 
             InitNewGroupCreation();
-            FillGroupForm(new GroupData("", "", ""));
+            FillGroupForm(group);
+            SubmitGroupCreation();
             ReturnToGroupsPage();
             return this; 
         }
