@@ -1,8 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium;
-using System;
-using System.Text;
+﻿using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -12,9 +8,38 @@ namespace WebAddressbookTests
         public ContactHelper(AppManager manager) : base(manager)
         { }
 
+        public ContactHelper ContactCreate(ContactData contact)
+        {
+            AddNewContact();
+            FillContactForm(contact);
+            SubmitContactCreation();
+            return this;
+        }
+
+        public ContactHelper Modify(int p, ContactData newData)
+        {
+            SelectContact(p);
+            InitContactModification();
+            FillContactForm(newData);
+            SubmitContactModification();
+            return this;
+        }
+
         public ContactHelper AddNewContact()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[" + index + "]/input")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactModification()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             return this;
         }
 
@@ -32,6 +57,12 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
+            return this;
+        }
+
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
             return this;
         }
     }

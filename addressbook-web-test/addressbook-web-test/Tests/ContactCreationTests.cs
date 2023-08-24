@@ -1,5 +1,4 @@
-﻿using addressbook_web_test;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace WebAddressbookTests
 {
@@ -8,12 +7,13 @@ namespace WebAddressbookTests
     {
 
         [Test]
-        public void TheContactCreateTest()
+        public void ContactCreateTest()
         {
-            appManager.Contacts
-                .AddNewContact()
-                .FillContactForm(new ContactData("Test", "Testov", "123456789"))
-                .SubmitContactCreation();
+            ContactData contact = new ContactData("Test");
+            contact.Lastname = "Testov";
+            contact.Mobile = "123456789";
+
+            appManager.Contacts.ContactCreate(contact);
         }
     }
 }
