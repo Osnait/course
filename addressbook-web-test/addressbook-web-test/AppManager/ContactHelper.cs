@@ -25,7 +25,16 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper AddNewContact()
+        public ContactHelper Remove(int p)
+        {
+            manager.Navigator.GoToGroupsPage();
+
+            SelectContact(p);
+            RemoveContact();
+            return this;
+        }
+
+            public ContactHelper AddNewContact()
         {
             driver.FindElement(By.LinkText("add new")).Click();
             return this;
@@ -63,6 +72,12 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.Name("delete")).Click();
             return this;
         }
     }
